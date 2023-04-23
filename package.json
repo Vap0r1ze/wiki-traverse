@@ -1,0 +1,15 @@
+{
+    "name": "wiki-traverse",
+    "private": true,
+    "scripts": {
+        "start": "tsx ./server"
+    },
+    "devDependencies": {
+        "@types/node": "18",
+        "@types/ws": "^8.5.4",
+        "tsx": "^3.12.6"
+    },
+    "dependencies": {
+        "ws": "^8.13.0"
+    }
+}
