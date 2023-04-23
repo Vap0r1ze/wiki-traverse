@@ -8,7 +8,7 @@
 - Rust nightly toolchain (for now), feel free to make a PR that doesnt require the nightly feature flags im lazy though
 - Wiki dumps in SQL from any date (ungzipped), you need 3 tables: `page`, `redirects`, and `pagelinks`
     - If you want to skip the graph building, you can instead just use [this redis dump](https://drive.google.com/file/d/1Fd55I1FJMUXg4VBxnGKJuaqN7z9YCXYg/view) I made from the `2023-04-01` wiki dumps
-    - Also if you want to use this on thewikigame, I would use an older wiki dump (like ~2020), [heres a redis dump]() I made from `2020-09-20`
+    - Also if you want to use this on thewikigame, I would use an older wiki dump (like ~2020), [heres a redis dump](https://drive.google.com/file/d/1JtHu2oJISvEFoujb6csyypP4yYBn2OZG/view) I made from `2020-09-20`
 
 # Setup
 
