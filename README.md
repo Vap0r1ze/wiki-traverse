@@ -1,9 +1,13 @@
+<div align="center">
+    <img src="https://cdn.discordapp.com/attachments/637119506690474004/1099825353708556318/image.png"/>
+</div>
+
 # Requirements
 
 - A redis server, I used [Memurai](https://www.memurai.com/) because I'm on Windows, but you can just use [redis](https://archlinux.org/packages/community/x86_64/redis/) if ur on Arch or something
 - Rust nightly toolchain (for now), feel free to make a PR that doesnt require the nightly feature flags im lazy though
 - Wiki dumps in SQL from any date (ungzipped), you need 3 tables: `page`, `redirects`, and `pagelinks`
-    - If you want to skip the graph building, you can instead just use [this redis dump]() I made from the `2023-04-01` wiki dumps
+    - If you want to skip the graph building, you can instead just use [this redis dump](https://drive.google.com/file/d/1Fd55I1FJMUXg4VBxnGKJuaqN7z9YCXYg/view) I made from the `2023-04-01` wiki dumps
     - Also if you want to use this on thewikigame, I would use an older wiki dump (like ~2020), [heres a redis dump]() I made from `2020-09-20`
 
 # Setup
