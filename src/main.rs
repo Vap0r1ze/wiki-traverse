@@ -7,16 +7,6 @@ mod cache;
 mod build;
 mod traverse;
 
-fn unwrap_or_exit<T, E: std::fmt::Display>(opt: Option<T>, err: E) -> T {
-    match opt {
-        Some(value) => value,
-        None => {
-            eprintln!("{}", err);
-            std::process::exit(1);
-        }
-    }
-}
-
 fn main() -> Result<(), Box<dyn Error>> {
     dotenvy::dotenv()?;
     let dumps_path = env::var("WIKI_DUMPS_PATH")?;
@@ -24,20 +14,17 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let args: Vec<String> = env::args().collect();
 
-    let cmd = unwrap_or_exit(args.get(1), "No command provided");
-
-    if cmd == "build" {
-        build::build_graph(&dumps_path, &dump_timestamp)?
-    } else if cmd == "find" {
-        let [source, target] = unwrap_or_exit(args.get(2..4), "No source or target provided") else {
-            panic!()
-        };
-        traverse::find(source, target)?;
-    } else if cmd == "json" {
-        let [source, target] = unwrap_or_exit(args.get(2..4), "No source or target provided") else {
-            panic!()
-        };
-        traverse::find_json(source, target);
+    match args.as_slice() {
+        [_, cmd] if cmd == "build" => build::build_graph(&dumps_path, &dump_timestamp)?,
+        [_, cmd, source, target] if cmd == "find" => traverse::find(source, target)?,
+        [_, cmd, source, target] if cmd == "find_many" => traverse::find_many(source, target)?,
+        [_, cmd, source, target] if cmd == "json" => traverse::find_json(source, target),
+        _ => {
+            eprintln!("Usage: wiki-graph build");
+            eprintln!("       wiki-graph find <source> <target>");
+            eprintln!("       wiki-graph json <source> <target>");
+            std::process::exit(1);
+        }
     }
 
     Ok(())

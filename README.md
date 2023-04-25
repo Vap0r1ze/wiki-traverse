@@ -24,5 +24,4 @@ You can skip this if you're just using a prebuilt redis dump instead
 - `pnpm start` run websocket used in `server/wikipedia.user.js` (install npm dependencies first)
 
 # Todo
-- Alter the `bfs` so that you can get multi paths somehow
 - Maybe make the `bfs` optionally double-sides (optional cus its a bit more cheaty)
