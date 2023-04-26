@@ -59,10 +59,10 @@ impl TraversalIterator {
     ) -> Result<Self, String> {
         let target_id: String = cache
             .get(cache::IdOf(target_name))
-            .map_err(|_| "Could not find target page")?;
+            .map_err(|_| format!("Could not find target page {target_name:?}"))?;
         let source_id: String = cache
             .get(cache::IdOf(source_name))
-            .map_err(|_| "Could not find source page")?;
+            .map_err(|_| format!("Could not find source page {source_name:?}"))?;
         Ok(Self::new(source_id, target_id, cache))
     }
     fn successors(&self, node: &Node) -> Vec<Node> {

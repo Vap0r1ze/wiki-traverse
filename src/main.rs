@@ -19,6 +19,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         [_, cmd, source, target] if cmd == "find" => traverse::find(source, target)?,
         [_, cmd, source, target] if cmd == "find_many" => traverse::find_many(source, target)?,
         [_, cmd, source, target] if cmd == "json" => traverse::find_json(source, target),
+        [_, cmd, source, target] if cmd == "json_many" => traverse::find_json_many(source, target),
         _ => {
             eprintln!("Usage: wiki-graph build");
             eprintln!("       wiki-graph find <source> <target>");

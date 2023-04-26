@@ -51,6 +51,27 @@ pub fn find_many(source_name: &str, target_name: &str) -> Result<(), Box<dyn Err
     Ok(())
 }
 
+pub fn find_json_many(source_name: &str, target_name: &str) {
+    let cache = redis::Client::open("redis://127.0.0.1/")
+        .unwrap()
+        .get_connection()
+        .unwrap();
+
+    let path_iter = match PathIterator::new(source_name, target_name, cache) {
+        Ok(iter) => iter,
+        Err(err) => {
+            let err: Result<(), _> = Err(err);
+            let json_err = serde_json::to_string(&err).unwrap();
+            println!("{json_err}");
+            return;
+        }
+    };
+    for path in path_iter {
+        let json = serde_json::to_string(&path.take_inner()).unwrap();
+        println!("{json}");
+    }
+}
+
 pub fn find_json(source_name: &str, target_name: &str) {
     let cache = redis::Client::open("redis://127.0.0.1/")
         .unwrap()
